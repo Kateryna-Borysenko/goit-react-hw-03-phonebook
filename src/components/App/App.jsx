@@ -2,14 +2,38 @@ import { Component } from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
-import s from './App.module.css';
+import * as storage from 'services/localStorage';
 import image from 'images/image.jpg';
+import s from './App.module.css';
+
+const STORAGE_KEY = 'contacts';
 
 class App extends Component {
   state = {
     contacts: [],
     filter: '',
   };
+
+  //2 cчитать данные -> запись выше
+  componentDidMount() {
+    //компонент установлен
+    const savedContacts = storage.get(STORAGE_KEY);
+    //eсли есть обновлённые данные, а не null (никаких записей)
+    if (savedContacts) {
+      this.setState({ contacts: savedContacts }); //обновляем состояние наших контактов в state
+    }
+  }
+
+  //1 если наш App измненится и вызовиться метод  componentDidUpdate(prevProps, prevState) -> то мы хотим проверит -> этот метод вызвался из-за того, что измненилися города и ответ Да -> то в этот момент мы хотим записать всё в  localStorage
+  //важно даже если длинна массива такая же проверка сравнивает по ссылки и распознает изменения и перезапишет в localStorage
+  componentDidUpdate(prevProps, prevState) {
+    //! ЗАПИСЫВАЕТ
+    const { contacts } = this.state;
+    if (prevState.contacts !== contacts) {
+      //проверка были ли изменения, если нет, то ничего не делать
+      storage.save(STORAGE_KEY, contacts); //save() -готовый метод /services
+    }
+  }
 
   onSubmit = newContact => {
     const { id, name, number } = newContact;
