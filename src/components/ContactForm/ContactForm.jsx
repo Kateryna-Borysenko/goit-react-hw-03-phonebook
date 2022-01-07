@@ -64,7 +64,7 @@ class ContactForm extends Component {
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            placeholder="example: 645-17-79"
+            placeholder="example: +38(099)205-33-33"
             required
           />
         </label>

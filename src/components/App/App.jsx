@@ -1,10 +1,11 @@
 import { Component } from 'react';
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
+import ContactForm from 'components/ContactForm/ContactForm';
+import ContactList from 'components/ContactList/ContactList';
+import Filter from 'components/Filter/Filter';
 import * as storage from 'services/localStorage';
 import image from 'images/image.jpg';
 import s from './App.module.css';
+import Container from 'common/Container/Container';
 
 const STORAGE_KEY = 'contacts';
 
@@ -71,13 +72,11 @@ class App extends Component {
     const { contacts, filter } = this.state;
 
     return (
-      <div className={s.container}>
+      <Container>
         <img className={s.image} src={image} alt="Woman" />
         <div className={s.contantWrap}>
           <h1 className={s.title}>Phonebook</h1>
-          <div className={s.wrap}>
-            <ContactForm onSubmit={this.onSubmit} contacts={contacts} />
-          </div>
+          <ContactForm onSubmit={this.onSubmit} contacts={contacts} />
           <h2 className={s.subtitle}>Contacts:</h2>
           <Filter value={filter} onChange={this.onChangeInput} />
           <ContactList
@@ -85,7 +84,7 @@ class App extends Component {
             onDelete={this.deleteContact}
           />
         </div>
-      </div>
+      </Container>
     );
   }
 }

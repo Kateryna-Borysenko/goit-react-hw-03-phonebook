@@ -3,7 +3,7 @@ import s from './Filter.module.css';
 
 const Filter = ({ value, onChange }) => {
   return (
-    <div>
+    <>
       <label className={s.label}>
         <span className={s.title}>Find contacts by name</span>
         <input
@@ -15,7 +15,7 @@ const Filter = ({ value, onChange }) => {
           placeholder="example: Nina"
         />
       </label>
-    </div>
+    </>
   );
 };
 
