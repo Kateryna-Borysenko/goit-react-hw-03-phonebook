@@ -12,7 +12,6 @@ const ContactList = ({ contacts, onDelete }) => (
         <button
           type="button"
           className={s.deleteBtn}
-          // первдала в props onDelete={this.deleteContact}
           onClick={() => onDelete(id)}
         >
           Delete

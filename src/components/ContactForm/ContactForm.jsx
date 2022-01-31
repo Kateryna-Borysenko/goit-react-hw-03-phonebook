@@ -13,13 +13,9 @@ class ContactForm extends Component {
 
     const { name, number } = this.state;
 
-    //прилитит в App массив сontacts новый контакт - объект
-    // id:"WIKCSp5KiPxetbZEQIvXT"
-    // name:"Kateryna Borysenko"
-    // number:"455-25-33"
     this.props.onSubmit({
       id: nanoid(),
-      name, //aналог записи name: name
+      name,
       number,
     });
     this.reset();
@@ -27,11 +23,9 @@ class ContactForm extends Component {
 
   onChangeInput = e => {
     const { name, value } = e.target;
-    //когда пользователь введет данные в состояние запишется значение по ключу
     this.setState({ [name]: value });
   };
 
-  // важно влиять на состояние через .setState
   reset = () => {
     this.setState({ name: '', number: '' });
   };
